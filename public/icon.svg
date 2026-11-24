@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <rect width="128" height="128" rx="28" fill="#FAF8F3" />
+  <circle cx="64" cy="66" r="46" fill="#FFFFFF" stroke="#1E293B" stroke-width="5" />
+  <path d="M64 66 L64 22 A44 44 0 0 1 102.1 44 Z" fill="#FDE047" />
+  <path d="M64 66 L102.1 44 A44 44 0 0 1 102.1 88 Z" fill="#86EFAC" />
+  <path d="M64 66 L102.1 88 A44 44 0 0 1 64 110 Z" fill="#7DD3FC" />
+  <path d="M64 66 L64 110 A44 44 0 0 1 25.9 88 Z" fill="#C4B5FD" />
+  <path d="M64 66 L25.9 88 A44 44 0 0 1 25.9 44 Z" fill="#FDBA74" />
+  <path d="M64 66 L25.9 44 A44 44 0 0 1 64 22 Z" fill="#F9A8D4" />
+  <g stroke="#FFFFFF" stroke-width="2.5">
+    <line x1="64" y1="66" x2="64" y2="22" />
+    <line x1="64" y1="66" x2="102.1" y2="44" />
+    <line x1="64" y1="66" x2="102.1" y2="88" />
+    <line x1="64" y1="66" x2="64" y2="110" />
+    <line x1="64" y1="66" x2="25.9" y2="88" />
+    <line x1="64" y1="66" x2="25.9" y2="44" />
+  </g>
+  <circle cx="64" cy="66" r="14" fill="#FFFFFF" stroke="#1E293B" stroke-width="4" />
+  <circle cx="64" cy="66" r="5" fill="#F97316" />
+  <path d="M56 12 L72 12 L64 26 Z" fill="#F97316" stroke="#1E293B" stroke-width="3" stroke-linejoin="round" />
+</svg>

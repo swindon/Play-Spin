@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Outfit', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', ui-rounded, system-ui, -apple-system, sans-serif;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: #FAF8F3;
+    color: #1E293B;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* 3D Flip Card GPU utilities with grid-stacking so front & back never clip */
+.flip-perspective {
+  perspective: 1200px;
+}
+
+.flip-card-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.52s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.flip-card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-card-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Mobile safe area support */
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-card-inner {
+    transition-duration: 0.01ms !important;
+  }
+}
