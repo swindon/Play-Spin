@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Clock, Shuffle, Smile, Sun, Sunset, User, Users, X } from 'lucide-react';
+import { Clock, Coffee, Shuffle, Smile, Sun, Sunset, User, Users, X } from 'lucide-react';
 
 export type PlayFilter = 'all' | 'solo' | 'group';
 export type TimeFilter = 'all' | 'before' | 'after';
@@ -178,6 +178,20 @@ export const FilterSheet: React.FC<FilterSheetProps> = ({
           >
             Done
           </button>
+        </div>
+
+        {/* Support Link */}
+        <div className="pt-2 text-center border-t border-slate-100">
+          <a
+            href="https://buymeacoffee.com/scottwindon"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => console.log('Support PlaySpin: https://buymeacoffee.com/scottwindon')}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 hover:text-amber-800 hover:underline transition-colors cursor-pointer"
+          >
+            <Coffee className="w-3.5 h-3.5" />
+            <span>Support PlaySpin on Buy Me a Coffee</span>
+          </a>
         </div>
       </div>
     </div>

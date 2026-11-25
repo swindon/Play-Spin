@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ArrowLeft,
   CalendarDays,
+  Coffee,
   LayoutGrid,
   SlidersHorizontal,
   Volume2,
@@ -89,6 +90,10 @@ export default function App() {
   useEffect(() => {
     saveCustomActivities(customActivities);
   }, [customActivities]);
+
+  useEffect(() => {
+    console.log('Support PlaySpin: https://buymeacoffee.com/scottwindon');
+  }, []);
 
   const toggleMute = () => {
     setIsMuted((prev) => {
@@ -298,6 +303,18 @@ export default function App() {
 
             <PWAInstallButton />
 
+            <a
+              href="https://buymeacoffee.com/scottwindon"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => console.log('Support PlaySpin: https://buymeacoffee.com/scottwindon')}
+              aria-label="Support PlaySpin on Buy Me a Coffee"
+              title="Support PlaySpin (Buy Me a Coffee)"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-amber-50 border border-amber-200 text-amber-700 hover:bg-amber-100 hover:text-amber-800 transition-colors cursor-pointer"
+            >
+              <Coffee className="w-4 h-4" strokeWidth={2.2} />
+            </a>
+
             <button
               type="button"
               onClick={toggleMute}
@@ -406,6 +423,24 @@ export default function App() {
           </div>
         )}
       </main>
+
+      {/* Footer with Support Link */}
+      <footer className="w-full border-t border-slate-200/70 py-4 px-4 text-center text-xs text-slate-500 mt-auto bg-[#FAF8F3]/60">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4">
+          <span>PlaySpin · Screen-free fun for kids</span>
+          <span className="hidden sm:inline text-slate-300">·</span>
+          <a
+            href="https://buymeacoffee.com/scottwindon"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => console.log('Support PlaySpin: https://buymeacoffee.com/scottwindon')}
+            className="inline-flex items-center gap-1.5 font-semibold text-amber-700 hover:text-amber-800 hover:underline transition-colors cursor-pointer"
+          >
+            <Coffee className="w-3.5 h-3.5" />
+            <span>Buy Me a Coffee</span>
+          </a>
+        </div>
+      </footer>
 
       {/* Filter Drawer / Modal */}
       <FilterSheet
