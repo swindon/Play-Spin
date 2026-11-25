@@ -240,7 +240,7 @@ export default function App() {
             className="inline-flex items-center gap-2 font-display text-lg sm:text-xl font-extrabold tracking-tight text-slate-900 whitespace-nowrap shrink-0 cursor-pointer"
           >
             <img
-              src="/icon.svg"
+              src={`${import.meta.env.BASE_URL}icon.svg`}
               alt="PlaySpin logo"
               className="w-8 h-8 rounded-lg"
             />

@@ -5,39 +5,45 @@ import path from 'path';
 import {defineConfig} from 'vite';
 import {VitePWA} from 'vite-plugin-pwa';
 
-export default defineConfig(() => {
+export default defineConfig(({ command, mode, isPreview }) => {
+  const isProduction = mode === 'production' || command === 'build' || Boolean(isPreview);
+  const rawBase = process.env.BASE_URL || (isProduction ? '/Play-Spin/' : '/');
+  const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+
   return {
+    base,
     plugins: [
       react(),
       tailwindcss(),
       VitePWA({
+        base,
         registerType: 'autoUpdate',
         includeAssets: ['icon.svg', 'apple-touch-icon.png', 'pwa-192x192.png', 'pwa-512x512.png', 'pwa-maskable-512x512.png'],
         manifest: {
-          id: '/',
+          id: base,
           name: 'PlaySpin — Kids Activity Spinner',
           short_name: 'PlaySpin',
           description: 'Screen-free before and after school activity randomizer for kids with solo and group play options.',
           theme_color: '#FAF8F3',
           background_color: '#FAF8F3',
           display: 'standalone',
-          start_url: '/',
-          scope: '/',
+          start_url: base,
+          scope: base,
           icons: [
             {
-              src: '/pwa-192x192.png',
+              src: `${base}pwa-192x192.png`,
               sizes: '192x192',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-512x512.png',
+              src: `${base}pwa-512x512.png`,
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any',
             },
             {
-              src: '/pwa-maskable-512x512.png',
+              src: `${base}pwa-maskable-512x512.png`,
               sizes: '512x512',
               type: 'image/png',
               purpose: 'maskable',
@@ -92,18 +98,34 @@ export default defineConfig(() => {
           if (error) {
             return;
           }
-          const distDir = path.resolve(__dirname, 'dist');
-          const srcAssets = path.resolve(__dirname, 'src/assets');
+          const distDir = path.resolve(process.cwd(), 'dist');
+          const srcAssets = path.resolve(process.cwd(), 'src/assets');
           const distAssets = path.resolve(distDir, 'src/assets');
           if (fs.existsSync(distDir) && fs.existsSync(srcAssets)) {
             fs.cpSync(srcAssets, distAssets, {recursive: true, force: true});
           }
         },
       },
+      // Generate 404.html from index.html for GitHub Pages routing fallback
+      {
+        name: 'copy-github-pages-404',
+        apply: 'build',
+        closeBundle(error?: Error): void {
+          if (error) {
+            return;
+          }
+          const distDir = path.resolve(process.cwd(), 'dist');
+          const indexHtml = path.resolve(distDir, 'index.html');
+          const notFoundHtml = path.resolve(distDir, '404.html');
+          if (fs.existsSync(indexHtml)) {
+            fs.copyFileSync(indexHtml, notFoundHtml);
+          }
+        },
+      },
     ],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(process.cwd(), '.'),
       },
     },
     server: {
